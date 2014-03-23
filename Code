@@ -1,0 +1,71 @@
+/**************************************************
+*Caesar.c
+*
+*Written by Myles Rayfield
+*
+*Write a program that encrypts using Caesar Cypher
+***************************************************/
+
+
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, string argv[])
+{
+    // Get a key from the user on the 2nd command line. Check for correct usage No more than one key
+    if (argc !=2)
+       {
+          printf("Key Error!\n");
+          return 1;
+       }
+    
+    
+    // second command line argument is the key
+	int key = atoi(argv[1]);
+    
+	// Prompt user, get plaintext
+
+    string s = GetString();
+    
+    //Assinging ASCII letters to intergers
+    int upper = 'A';
+    int lower = 'a';
+    
+    
+    //Printing the cipher
+    for (int i = 0, n = strlen(s); i < n; i++) 
+    {
+    
+        int result = s[i] + key;
+        if (islower(s[i]) >= 'a' && islower(s[i]) >= 'z'&& isalpha(s[i]))
+        {
+            printf("%c", ((result - lower) % 26  + lower));
+        }
+        
+        if (isupper(s[i]) >= 'A' && isupper(s[i]) >= 'Z')
+        {
+            printf("%c", ((result - upper) % 26  + upper));
+        }
+        else if (islower(s[i]) < 'a' && islower(s[i]) < 'z' && isupper(s[i]) < 'A' && isupper(s[i]) < 'Z' && isalpha(s[i]))
+        {
+            printf("%c", isalpha(result));
+        }
+        
+        if (ispunct(s[i]))
+        {
+            printf("%c", s[i]);
+        }
+        
+        if (isspace(s[i]))
+        {
+            printf(" ");
+        }
+    }
+    printf("\n");
+
+   return 0;
+}
